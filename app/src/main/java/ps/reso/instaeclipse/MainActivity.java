@@ -2,8 +2,6 @@ package ps.reso.instaeclipse;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.ActionBar;
@@ -30,13 +28,6 @@ public class MainActivity extends AppCompatActivity {
         // (see Theme.InstaEclipse); adopting the wallpaper palette here would override the brand.
         super.onCreate(savedInstanceState);
 
-        // Launch Instagram when the InstaEclipse companion app opens.
-        Intent instagramIntent = getPackageManager()
-                .getLaunchIntentForPackage("com.instagram.android");
-        if (instagramIntent != null) {
-            instagramIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(instagramIntent);
-        }
         Logging.init(this, "instaeclipse_companion.log");
         ps.reso.instaeclipse.mods.media.FrameSessionCache.cleanupOrphans(getCacheDir());
         VersionCheckUtility.checkForUpdates(this);
